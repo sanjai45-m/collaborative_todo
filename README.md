@@ -97,9 +97,13 @@ flutter run
 
 ## 🌐 Backend
 
-The app connects to a WebSocket backend deployed on **Render**:
-`wss://collaborative-todo-backend-c4p6.onrender.com`
+The app uses a WebSocket-based backend deployed on **Render** to enable real-time collaboration.
 
+- **WebSocket Endpoint:**  
+  `wss://collaborative-todo-backend-c4p6.onrender.com`
+
+- **Backend Source Code:**  
+  https://github.com/sanjai45-m/collaborative-todo-backend
 ## 📄 License
 
 This project is open source and available under the [MIT License](LICENSE).
