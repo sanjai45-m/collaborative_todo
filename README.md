@@ -1,64 +1,105 @@
-# 📝 Real-time Collaborative Todo List
+# 📝 Collaborative Todo
 
-A real-time collaborative Todo list built with Flutter that lets multiple users manage tasks together with live updates via WebSocket.
+A real-time collaborative todo application built with **Flutter** and **WebSocket**, allowing multiple users to manage tasks together in real time.
 
 ## ✨ Features
 
-- **Real-time Sync** - Changes appear instantly for all users via WebSocket
-- **Task Management** - Create, edit, delete, and update task status
-- **Status Tracking** - Pending, In Progress, Completed with color coding
-- **User Info** - Each task shows who created and last updated it
-- **Live Chart** - Pie chart showing task distribution by status
-- **Export Reports** - Generate and share PDF reports
-- **Device Recognition** - No login needed, uses unique device ID
+- **Real-time Sync** — Tasks sync instantly across all connected devices via WebSocket
+- **Task Management** — Create, edit, delete, and update task status (Pending, In Progress, Completed)
+- **Status Chart** — Visual pie chart showing task distribution by status
+- **Device Identification** — Tracks which device created or updated each task
+- **Export as PDF** — Generate and export task reports as PDF
+- **Connection Status** — Live indicator showing server connection state
+- **Auto Reconnect** — Automatically reconnects to the server with exponential backoff
 
 ## 📸 Screenshots
 
-| Todo List | Drawer | Status Chart |
-|-----------|--------|--------------|
-| | | |
+<p align="center">
+  <img src="screenshots/task_created.png" width="220" alt="Task List">&nbsp;&nbsp;
+  <img src="screenshots/create_task.png" width="220" alt="Create Task">&nbsp;&nbsp;
+  <img src="screenshots/drawer_menu.png" width="220" alt="Drawer Menu">&nbsp;&nbsp;
+  <img src="screenshots/todo_list_chart.png" width="220" alt="Status Chart">
+</p>
 
-## 🏗️ Tech Stack
+| Task List | Create Task | Drawer Menu | Status Chart |
+|:---------:|:-----------:|:-----------:|:------------:|
+| View and manage all tasks with status buttons | Add new tasks with title and description | Connection status & export options | Pie chart showing task distribution |
 
-- **Frontend**: Flutter with Provider for state management
-- **Backend**: Node.js, WebSocket, Neon DB (PostgreSQL)
-- **Real-time**: WebSocket for instant updates
+## 🏗️ Project Structure
 
-## 📦 Packages Used
+```
+lib/
+├── main.dart                          # App entry point
+├── models/
+│   └── todo.dart                      # Todo data model
+├── providers/
+│   └── todo_provider.dart             # State management & WebSocket logic
+├── screens/
+│   ├── add_edit_todo_screen.dart       # Create/Edit task screen
+│   └── todo_list_screen.dart          # Main task list screen
+├── services/
+│   └── device_service.dart            # Device identification service
+├── utils/
+│   └── date_formatter.dart            # Date formatting utilities
+└── widgets/
+    ├── action_buttons.dart            # Task action buttons
+    ├── delete_dialog.dart             # Delete confirmation dialog
+    ├── report_generator.dart          # PDF report generator
+    ├── status_chart.dart              # Pie chart widget
+    ├── todo_card.dart                 # Task card widget
+    ├── todo_form.dart                 # Task form widget
+    ├── todo_info_card.dart            # Task info display
+    ├── common/
+    │   ├── export_button.dart         # Export button widget
+    │   ├── info_row.dart              # Info row widget
+    │   └── stat_row.dart              # Statistics row widget
+    └── drawer/
+        ├── connection_status_card.dart # Connection status indicator
+        ├── custom_drawer.dart         # Navigation drawer
+        ├── drawer_header.dart         # Drawer header
+        └── export_section.dart        # Export options section
+```
 
-| Package | Version | Purpose |
-|---------|---------|---------|
-| `provider` | ^6.1.1 | State management |
-| `web_socket_channel` | ^2.4.0 | WebSocket connection |
-| `fl_chart` | ^0.66.0 | Status chart |
-| `device_info_plus` | ^9.1.0 | Device ID for user tracking |
-| `pdf` | ^3.10.7 | PDF report generation |
-| `share_plus` | ^7.2.1 | Sharing reports |
-| `uuid` | ^4.3.3 | Generate task IDs |
-| `intl` | ^0.18.1 | Date formatting |
-| `path_provider` | ^2.1.1 | File system access |
-
-## 🚀 Quick Start
+## 🚀 Getting Started
 
 ### Prerequisites
-- Flutter SDK (3.0 or higher)
-- Node.js (18 or higher) for backend (optional)
 
-### Frontend Setup
+- [Flutter SDK](https://flutter.dev/docs/get-started/install) (3.0+)
+- Dart SDK
+- Android Studio / VS Code
+
+### Installation
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/collaborative-todo.git
-cd collaborative-todo
+git clone https://github.com/sanjai45-m/collaborative_todo.git
+
+# Navigate to project directory
+cd collaborative_todo
 
 # Install dependencies
 flutter pub get
 
-# Update WebSocket URL in lib/providers/todo_provider.dart
-# For production (Render): 'wss://collaborative-todo-backend-c4p6.onrender.com'
-# For Android emulator: 'ws://10.0.2.2:3000'
-# For iOS simulator: 'ws://localhost:3000'
-# For physical device: 'ws://192.168.1.x:3000' (use your computer's IP)
-
 # Run the app
 flutter run
+```
+
+## 🛠️ Tech Stack
+
+| Technology | Purpose |
+|------------|---------|
+| **Flutter** | Cross-platform UI framework |
+| **Provider** | State management |
+| **WebSocket** | Real-time communication |
+| **fl_chart** | Pie chart visualization |
+| **PDF** | Report generation |
+| **UUID** | Unique task identifiers |
+
+## 🌐 Backend
+
+The app connects to a WebSocket backend deployed on **Render**:
+`wss://collaborative-todo-backend-c4p6.onrender.com`
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
